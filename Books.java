@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Books {
@@ -77,6 +78,10 @@ class Journal extends Books{
     final static int MAX_JOURNALS=5;
     private static ArrayList<Journal> journal= new ArrayList<Journal>();
 
+    public Journal(){
+        
+    }
+
     public Journal(int newbookId, int newquantity, boolean newava,double newPrice){
         super(newbookId, newava, newquantity,newPrice);
     }
@@ -89,8 +94,10 @@ class Journal extends Books{
             journal.add(j);
             
         }
-
     }
+    
+
+    
    
 }
 class Studybooks extends Books{

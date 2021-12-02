@@ -8,7 +8,7 @@ public class Order{
 
     }
 
-    public Order( Books[] newBookOrder, int newQuantity){
+    public Order( ArrayList<Books> newBookOrder, int newQuantity){
 
     }
 

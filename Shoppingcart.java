@@ -76,8 +76,8 @@ public void setFinalOrder(Order newFinalOrder){
 //methods 
     public void AddBook(int ch,Customer cus, Books book){
         while(ch!=9&&ch==1){
-        System.out.print("Enter the book ID for the book you want to add:");
-        int bookid=input.nextInt();
+            System.out.print("Enter the book ID for the book you want to add:");
+         int bookid=input.nextInt();
             Books[] newOrder=new Books[cus.getCart().order.length+1];
             if(book.getBookId()==bookid&&book.getAv()==true){
             for(int i=0; i<order.length;i++){
@@ -87,7 +87,7 @@ public void setFinalOrder(Order newFinalOrder){
              cus.getCart().setOrder(newOrder);
              
              book.setQuantity(book.getQuantity()-1);
-             if(book instanceof Journal)
+            if(book instanceof Journal)
             Journal.numOfJour--;
             if(book instanceof Studybooks)
             Studybooks.numOfStudybooks--;
@@ -101,8 +101,9 @@ public void setFinalOrder(Order newFinalOrder){
             System.out.println("sorry book is out of stock");
             
         
-        System.out.println("if you want to add another book press 1 if you want out press 9");
-        ch=input.nextInt(); }
+        System.out.println("if you want to stay in the system press 1 if you want out press 9");
+        ch=input.nextInt(); 
+    }
     }
     
     
@@ -174,6 +175,7 @@ public void setFinalOrder(Order newFinalOrder){
         if(answer==1){
             cus.getCart().order=null;
             System.out.println("Order is cancelled");
+            Order.numOfOrders--;
         }
         else
         System.out.println("Order is NOT cancelled");
