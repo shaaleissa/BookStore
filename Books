@@ -102,7 +102,7 @@ public class Books {
    
     public void displayInfo(){
         String answer;
-        System.out.print("would u like to display the info of your book?");
+        System.out.print("would you like to display the informations of your book?");
         Scanner input=new Scanner(System.in);
         answer=input.nextLine();
         answer.toLowerCase();
