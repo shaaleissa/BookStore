@@ -1,7 +1,7 @@
-package books;
 
 
 public class Studybooks extends Books {
+    public static int numOfStudybooks;
 
     public Studybooks() {
         super();

@@ -1,79 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class App {
-  // Journal Book objects
-  public static Books j1=new Journal(1, 3, true, 112);
-  public static Books j2=new Journal(2, 3, true, 112);
-  public static Books j3=new Journal(3, 3, true, 112);
-  public static Books j4=new Journal(4, 3, true, 112);
-  public static Books returnJ(int choice){
-      if(choice==j1.getBookId())
-      return j1;
-      if(choice==j2.getBookId())
-      return j2;
-      if(choice==j3.getBookId())
-      return j3;
-      else
-      return j4;
-
-  }
-
-    public static void shoppingCartSystem(Customer c1){
-        Scanner input=new Scanner(System.in);
-        boolean keepGoing=true;
-        while(keepGoing){
-        int ch;
-        System.out.println("** Welcome To Shopping Cart System **");
-        System.out.println("Enter 1 to add books");
-        System.out.println("Enter 2 to romove books");
-        System.out.println("Enter 3 to place order and show invoice ");
-        System.out.println("Enter 4 to show invoice");
-        System.out.println("Enter 5 to cancel order");
-        System.out.println("Enter 6 to exit shopping cart system");
-        ch=input.nextInt();
-     switch(ch){
-         case 1:
-         System.out.println("Enter the type of book you want to add :");
-         System.out.println("1 for journals :");
-         System.out.println("2 for studybooks :");
-         System.out.println("3 for magazines :");
-         int choosenbook=input.nextInt();
-         System.out.println("Enter Book ID :");
-         int choosenId=input.nextInt();
-          // problem only adds one book at a time 
-            c1.getCart().AddBook(ch, c1, returnJ(choosenId));
-         
-         break;
-         case 2:
-         System.out.println("Enter the type of book you want to add :");
-         System.out.println("1 for journals :");
-         System.out.println("2 for studybooks :");
-         System.out.println("3 for magazines :");
-         int removeBook=input.nextInt();
-         System.out.println("ID to remove:");
-         int removeId=input.nextInt();
-         // problem only removes one book at a time ??
-            c1.getCart().RemoveBook(ch, c1, returnJ(removeId));
-         
-         break;
-         case 3:
-         c1.getCart().PlaceOrder(c1, c1.getCart().getOrder());
-         c1.getCart().showBill(c1);
-         break;
-         case 4:
-         c1.getCart().showBill(c1);
-         break;
-         case 5:
-         c1.getCart().cancelOrder(c1);
-         break;
-         case 6: System.out.println("Thank you for shopping with us");
-         keepGoing=false;
-
-     }
-
-    }}
-
     public static void main(String[] args) {
+    // Magazines Book objects
+    Books m1=new Magazines(1, "Vouge", 3, 100, 3, true);
+    // Journals Book objects
+    // StudyBooks Book Objects
+    Books s1=new Studybooks(1, "Math", 2, 119, 8, true);
+    // total array list of books
+    ArrayList<Books> totalBooks= new ArrayList<Books>();
+    totalBooks.add(m1);
+    totalBooks.add(s1);
         Customer c1=new Customer(1, "Shahad","1234");
         Scanner input=new Scanner(System.in);
    
@@ -144,7 +81,68 @@ public class App {
                     break;
                     case 3:
                     // will have to verify login to enter the system 
-                    shoppingCartSystem(c1);
+                    boolean keepGoing=true;
+        while(keepGoing){
+        int ch;
+        System.out.println("** Welcome To Shopping Cart System **");
+        System.out.println("Enter 1 to add books");
+        System.out.println("Enter 2 to romove books");
+        System.out.println("Enter 3 to place order and show invoice ");
+        System.out.println("Enter 4 to show invoice");
+        System.out.println("Enter 5 to cancel order");
+        System.out.println("Enter 6 to exit shopping cart system");
+        ch=input.nextInt();
+     switch(ch){
+         case 1:
+         System.out.println("Enter the type of book you want to add :");
+         System.out.println("1 for journals :");
+         System.out.println("2 for studybooks :");
+         System.out.println("3 for magazines :");
+         int choosenType=input.nextInt();
+         if(choosenType==2){
+             for(int i=0; i<totalBooks.size(); i++)
+             if(totalBooks.get(i).getType()==2)
+             c1.getCart().AddBook(ch, c1, totalBooks.get(i));
+         }
+         if(choosenType==3){
+            for(int i=0; i<totalBooks.size(); i++)
+            if(totalBooks.get(i).getType()==3)
+            c1.getCart().AddBook(ch, c1, totalBooks.get(i));
+        }
+   
+         break;
+         case 2:
+         System.out.println("Enter the type of book you want to remove :");
+         System.out.println("1 for journals :");
+         System.out.println("2 for studybooks :");
+         System.out.println("3 for magazines :");
+         int removeType=input.nextInt();
+         if(removeType==2){
+            for(int i=0; i<totalBooks.size(); i++)
+            if(totalBooks.get(i).getType()==2)
+            c1.getCart().RemoveBook(ch, c1, totalBooks.get(i));
+        }
+        if(removeType==3){
+            for(int i=0; i<totalBooks.size(); i++)
+            if(totalBooks.get(i).getType()==3)
+            c1.getCart().RemoveBook(ch, c1, totalBooks.get(i));
+        }   
+         break;
+         case 3:
+         c1.getCart().PlaceOrder(c1, c1.getCart().getOrder());
+         c1.getCart().showBill(c1);
+         break;
+         case 4:
+         c1.getCart().showBill(c1);
+         break;
+         case 5:
+         c1.getCart().cancelOrder(c1);
+         break;
+         case 6: System.out.println("Thank you for shopping with us");
+         keepGoing=false;
+
+     }
+    }
                     break;
                     case 4:
                     System.out.println("");

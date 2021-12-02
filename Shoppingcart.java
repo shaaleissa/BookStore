@@ -79,7 +79,7 @@ public void setFinalOrder(Order newFinalOrder){
             System.out.print("Enter the book ID for the book you want to add:");
          int bookid=input.nextInt();
             Books[] newOrder=new Books[cus.getCart().order.length+1];
-            if(book.getBookId()==bookid&&book.getAv()==true){
+            if(book.getBookID()==bookid&&book.isAvailable()==true){
             for(int i=0; i<order.length;i++){
                     newOrder[i]=cus.getCart().order[i];
                 }
@@ -87,15 +87,21 @@ public void setFinalOrder(Order newFinalOrder){
              cus.getCart().setOrder(newOrder);
              
              book.setQuantity(book.getQuantity()-1);
-            if(book instanceof Journal)
-            Journal.numOfJour--;
+            if(book instanceof Journals)
+            Journals.numOfJournals--;
             if(book instanceof Studybooks)
             Studybooks.numOfStudybooks--;
             if(book instanceof Magazines)
             Magazines.numOfMagazines--;
             if(book.getQuantity()==0)
-                book.setAv(false);
+                book.setAvailable(false);
             System.out.println("Book Added"); 
+            System.out.println("If you want to confirm order press 1"); 
+            int confirm=input.nextInt();
+            if(confirm==1){
+                PlaceOrder(cus,order);
+            }
+
         }
             else
             System.out.println("sorry book is out of stock");
@@ -113,11 +119,11 @@ public void setFinalOrder(Order newFinalOrder){
         while(ch!=9){
          Books[] newOrder=new Books[cus.getCart().order.length-1];
         for(int i=0,k=0; i<cus.getCart().order.length; i++){
-        if(book.getBookId()==bookid){
+        if(book.getBookID()==bookid){
             if(book==cus.getCart().order[i])
             System.out.println("item has been removed");
-            if(book instanceof Journal)
-            Journal.numOfJour++;
+            if(book instanceof Journals)
+            Journals.numOfJournals++;
             if(book instanceof Studybooks)
             Studybooks.numOfStudybooks++;
             if(book instanceof Magazines)
@@ -156,7 +162,7 @@ public void setFinalOrder(Order newFinalOrder){
         }
         double sum=0.0;
         for(int i=0; i<booksOrder.length; i++){
-            sum=sum+(booksOrder[i].price);
+            sum=sum+(booksOrder[i].getPrice());
             totalPrice=sum;
         }
         if(cus.getCart().getIfStudent()==true){
@@ -196,7 +202,7 @@ public void setFinalOrder(Order newFinalOrder){
             if(cus.getCart().getOrder().length!=0)
             System.out.println("Date Of Order:"+date.toString());
             for(int i=0; i<cus.getCart().getOrder().length; i++){
-            System.out.println("Book ID["+(i+1)+"]: "+cus.getCart().getOrderObj(i).getBookId());
+            System.out.println("Book ID["+(i+1)+"]: "+cus.getCart().getOrderObj(i).getBookID());
             System.out.println("*****************************");
         } 
         System.out.println("Quantity Bought:"+cus.getCart().getOrder().length);

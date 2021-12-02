@@ -1,8 +1,6 @@
-package books;
-
 
 public class Magazines extends Books{
-public int numOfMagazines;
+public static int numOfMagazines;
     public Magazines() {
     }
     public Magazines(int bookID,String name,int type,double price,int quantity,boolean availability){

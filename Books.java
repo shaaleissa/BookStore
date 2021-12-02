@@ -1,108 +1,126 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 public class Books {
-    private int bookId;
+//creating attributes
+    
+    private int bookID;
     private int quantity;
-    private boolean ava;
-    String name;
-    double price;
-    int type;
-    public static int numOfBooks=0;
-    static Scanner input=new Scanner(System.in);
-
-    public Books(){
-        bookId=0;
-        quantity=0;
-        ava=true;
-
+    private int type;
+    private double price;        
+    private boolean availability;
+    protected String name;
+    public static int numOfBooks;
+     static ArrayList<Magazines> bookList1 = new ArrayList<>(); 
+    static ArrayList<Journals> bookList2 = new ArrayList<>(); 
+    static ArrayList<Studybooks> bookList3 = new ArrayList<>(); 
+     
+    //creating constructors
+       Books(){
     }
-    public Books(int newBookId, boolean newAve, int newQuan,double newPrice){
-        bookId=newBookId;
-        ava=newAve;
-        quantity=newQuan;
-        price=newPrice;
-
-    }
-
-
-    public void AddBooks(int type){
-        if(type==1){
-            Journal.AddJournal(createJournal());
-         
-        } 
-
-    }
-    public void DisplayBooksInfo(int type){
-        if(type==1){
-            
-
+       Books(int bookID, String name,int type,double price,int quantity, boolean availability){
+           this.bookID=bookID;
+           this.name=name;
+           this.type=type;
+           this.price=price;
+           this.quantity=quantity;
+           this.availability=availability;
+           numOfBooks++;
         }
+    
+    //getters and setter
+    public int getBookID() {
+        return bookID;
+    }
 
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
-    public int getBookId(){
-        return bookId;
-    }
-    public int getQuantity(){
+
+    public int getQuantity() {
         return quantity;
     }
-    public boolean getAv(){
-        return ava;
-    }
-    public void setBookId(int newBookId){
-        bookId=newBookId;
-    }
-    public void setQuantity(int newQuantity){
-        quantity=newQuantity;
-    }
-    public void setAv(boolean newAv){
-        ava=newAv;
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public static Journal createJournal(){
-        System.out.println("Enter id");
-        int id=input.nextInt();
-        System.out.println("Enter quantty");
-        int quan=input.nextInt();
-        System.out.println("Enter 1 if ava 0 if not");
-        boolean avae=input.nextBoolean();
-        System.out.println("Enter price:");
-        double price=input.nextDouble();
-        return new Journal(id,quan,avae,price);
-
+    public int getType() {
+        return type;
     }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return availability;
+    }
+
+    public void setAvailable(boolean availability) {
+        this.availability = availability;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    //methods
+    //figuere out how to let user enter book obj name to retrive the information
+     
+
+    //To add book according to book type
+    public void AddBooks(int type){
+        if (type == 1)
+          bookList1.add(new Magazines());
+        else if (type == 2)
+            bookList2.add(new Journals());
+        else
+            bookList3.add(new Studybooks());         
+    }
+
    
-}
-class Journal extends Books{
-    static int numOfJour=1;
-    final static int MAX_JOURNALS=5;
-    private static ArrayList<Journal> journal= new ArrayList<Journal>();
-
-    public Journal(){
+    @Override
+    public String toString(){
+        return"The details of the book are:\n"+"ID:"+this.bookID+"\n"+"Name:"+this.name+"\n"+"Type:"+this.type+"\n"+"Prise:"+this.price+"\n"+"Availability:"+this.availability;
         
     }
-
-    public Journal(int newbookId, int newquantity, boolean newava,double newPrice){
-        super(newbookId, newava, newquantity,newPrice);
-    }
-    public void DisplayJournals(Journal j1){
-        System.out.println("Id:"+j1.getBookId());
-    }
-
-    public static void AddJournal(Journal j){
-        if(j.getBookId()<=MAX_JOURNALS){
-            journal.add(j);
-            
-        }
-    }
-    
-
-    
    
+    public void displayInfo(){
+        String answer;
+        System.out.print("would you like to display the informations of your book?");
+        Scanner input=new Scanner(System.in);
+        answer=input.nextLine();
+        answer.toLowerCase();
+        if(answer.equals("yes")||answer.equals('y'))
+            System.out.print(toString());  
+    }
+        
+   /** public static void main(String[] args) {
+        Books b = new Books();
+        b.AddBooks(1);
+        b.AddBooks(2);
+        b.AddBooks(2);
+        System.out.println(Books.bookList1.size());
+        System.out.println(Books.bookList2.size());
+        System.out.println(Books.bookList3.size());
+        System.out.println(bookList2);
+        Books book1=new Books(1134,"programing",3,40,1,true);
+        book1.displayInfo();
+        
+    }*/
 }
-class Studybooks extends Books{
-    static int numOfStudybooks=1;
-}
-class Magazines extends Books{
-    static int numOfMagazines=1;
-}
+
