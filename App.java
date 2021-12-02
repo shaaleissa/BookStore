@@ -49,8 +49,11 @@ public class App {
          System.out.println("1 for journals :");
          System.out.println("2 for studybooks :");
          System.out.println("3 for magazines :");
+         int removeBook=input.nextInt();
+         System.out.println("ID to remove:");
          int removeId=input.nextInt();
-            c1.getCart().AddBook(ch, c1, returnJ(removeId));
+         // problem only removes one book at a time ??
+            c1.getCart().RemoveBook(ch, c1, returnJ(removeId));
          
          break;
          case 3:
