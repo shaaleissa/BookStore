@@ -2,16 +2,47 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
-    // Magazines Book objects
-    Books m1=new Magazines(1, "Vouge", 3, 100, 3, true);
-    // Journals Book objects
+        // customer account objects
+        Account c1=new Customer("shaalei", "Shahad", "12U890", "0505926755", "Dammam");
+        Account c2=new Customer();
+
+
+        // admin account objects
+        Account a1=new Admin("boos01", "Shahad", "456#89", "05059357822", "Dammam");
+        Account a2=new Admin();
+
+        // agent account objects 
+        Account d1=new Distributor("agent1", "David", "189H^80", "0505457955", "Riyadh");
+        Account d2=new Distributor();
+
+        //Books objects
+        Books b1=new Books();
+
+
+     // Journals Book objects
+    Books j1=new Journals(1, "stories", 1, 190, 4, true);
     // StudyBooks Book Objects
     Books s1=new Studybooks(1, "Math", 2, 119, 8, true);
+    // Magazines Book objects
+    Books m1=new Magazines(1, "Vouge", 3, 100, 3, true);
+
     // total array list of books
     ArrayList<Books> totalBooks= new ArrayList<Books>();
     totalBooks.add(m1);
     totalBooks.add(s1);
-        Customer c1=new Customer(1, "Shahad","1234");
+    totalBooks.add(j1);
+    Books.numOfBooks=totalBooks.size();
+    // total array list of accounts 
+    ArrayList<Account> totalAcc=new ArrayList<Account>();
+    //customers
+    totalAcc.add(c1);
+    //admins
+    totalAcc.add(a1);
+    totalAcc.add(a2);
+    //agents
+    totalAcc.add(d1);
+    Account.numOfAccount=totalAcc.size();
+       
         Scanner input=new Scanner(System.in);
    
         int choice;
@@ -40,13 +71,59 @@ public class App {
                 what=input.nextInt();
                 switch(what){
                     case 1:
-                    // sign up
+                    do{
+                        System.out.println("--------------------------------------------------------------");
+                        System.out.println("Please enter a userName that satisfy the following conditions:\n" + 
+                                "    1. start with characters \n" + 
+                                "    2. Number of characters must be between 8 to 15.");
+                        String username= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Admin)
+                            totalAcc.get(i).setUsername(username);
+                        }
+                        System.out.println("\nPlease enter a Password that satisfy the following conditions:\n" + 
+                                "    1. have at least eight characters.\n" + 
+                                "    2. consists of only letters and digits.\n" +
+                                "    3. must contain at least two digits.");
+                        String pass= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Admin)
+                            totalAcc.get(i).setPassword(pass);
+                        }
+                        
+                        System.out.println("\nPlease enter your name:");
+                        String name= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Admin)
+                            totalAcc.get(i).setName(name);
+                        }
+                        
+                        System.out.println("\nPlease enter your phone number:");
+                        String phone_no= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Admin)
+                            totalAcc.get(i).setPhone_no(phone_no);
+                        }
+                        
+                        
+                        System.out.println("\nPlease enter your address (city name):");
+                        String addres= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Admin)
+                            totalAcc.get(i).setAddress(addres);
+                        }
+                        }while(!a1.SignUp());
                     break;
                     case 2:
-                    // sign in
+                    // login 
                     break;
                     case 3:
-                    // add books from books class
+                    System.out.println("Enter type of book you want to add:");
+                    System.out.println("1 for journals :");
+                    System.out.println("2 for studybooks :");
+                    System.out.println("3 for magazines :");
+                    int ch=input.nextInt();
+                    b1.AddBooks(ch);
                     break;
                     case 4:
                     System.out.println("The number of current orders are: "+ Order.numOfOrders);
@@ -74,13 +151,54 @@ public class App {
                 answer=input.nextInt();
                 switch(answer){
                     case 1:
-                    // sign up
+                    do{
+                        System.out.println("--------------------------------------------------------------");
+                        System.out.println("Please enter a userName that satisfy the following conditions:\n" + 
+                                "    1. start with characters \n" + 
+                                "    2. Number of characters must be between 8 to 15.");
+                        String username= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Customer)
+                            totalAcc.get(i).setUsername(username);
+                        }
+                        System.out.println("\nPlease enter a Password that satisfy the following conditions:\n" + 
+                                "    1. have at least eight characters.\n" + 
+                                "    2. consists of only letters and digits.\n" +
+                                "    3. must contain at least two digits.");
+                        String pass= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Customer)
+                            totalAcc.get(i).setPassword(pass);
+                        }
+                        
+                        System.out.println("\nPlease enter your name:");
+                        String name= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Customer)
+                            totalAcc.get(i).setName(name);
+                        }
+                        
+                        System.out.println("\nPlease enter your phone number:");
+                        String phone_no= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Customer)
+                            totalAcc.get(i).setPhone_no(phone_no);
+                        }
+                        
+                        
+                        System.out.println("\nPlease enter your address (city name):");
+                        String addres= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Customer)
+                            totalAcc.get(i).setAddress(addres);
+                        }
+                        }while(!a1.SignUp());
                     break;
                     case 2:
-                    // sign in
+                    // login 
                     break;
                     case 3:
-                    // will have to verify login to enter the system 
+                        
                     boolean keepGoing=true;
         while(keepGoing){
         int ch;
@@ -168,13 +286,54 @@ public class App {
                 what=input.nextInt();
                 switch(what){
                     case 1:
-                    // sign up
+                    do{
+                        System.out.println("--------------------------------------------------------------");
+                        System.out.println("Please enter a userName that satisfy the following conditions:\n" + 
+                                "    1. start with characters \n" + 
+                                "    2. Number of characters must be between 8 to 15.");
+                        String username= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Distributor)
+                            totalAcc.get(i).setUsername(username);
+                        }
+                        System.out.println("\nPlease enter a Password that satisfy the following conditions:\n" + 
+                                "    1. have at least eight characters.\n" + 
+                                "    2. consists of only letters and digits.\n" +
+                                "    3. must contain at least two digits.");
+                        String pass= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Distributor)
+                            totalAcc.get(i).setPassword(pass);
+                        }
+                        
+                        System.out.println("\nPlease enter your name:");
+                        String name= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Distributor)
+                            totalAcc.get(i).setName(name);
+                        }
+                        
+                        System.out.println("\nPlease enter your phone number:");
+                        String phone_no= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Distributor)
+                            totalAcc.get(i).setPhone_no(phone_no);
+                        }
+                        
+                        
+                        System.out.println("\nPlease enter your address (city name):");
+                        String addres= input.next();
+                        for(int i=0; i<totalAcc.size(); i++){
+                            if(totalAcc.get(i) instanceof Distributor)
+                            totalAcc.get(i).setAddress(addres);
+                        }
+                        }while(!a1.SignUp());
                     break;
                     case 2:
-                    // sign in
+                    //login
                     break;
                     case 3:
-                    // checks orders
+                    
                     break;
                     case 4:
                     System.out.println("");

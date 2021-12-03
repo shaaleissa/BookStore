@@ -1,5 +1,3 @@
-package account;
-
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,15 +14,18 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     protected String password ;
     protected String phone_no;
     protected String address;
+    private Shoppingcart shoppingCart=new Shoppingcart();
     public static int numOfAccount=3;
+
+    
   
   
   
    public void existingAccount ()
     {
-    existAccount.add(new Account2 ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
-    existAccount.add(new Account2 ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
-    existAccount.add(new Account2 ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
+    existAccount.add(new Account ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
+    existAccount.add(new Account ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
+    existAccount.add(new Account ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
     }
 
     
@@ -69,12 +70,12 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     }
   
     
-     boolean validateLogin(String username,String password){
+     boolean validateLogin(){
         Scanner input=new Scanner(System.in);
         System.out.println("enter your username:");
-       username =input.nextLine();
+       String username =input.nextLine();
        System.out.println("enter your password:");
-       password =input.nextLine();
+       String password =input.nextLine();
               
         for(int i=0;i<=existAccount.size();i++)
         {
@@ -90,7 +91,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
    public boolean SignUp(){
         
         if(ValidUsername()&& validPass()){
-            System.out.println("You have been ‏signed up successfully");
+            System.out.println("You have been signed up successfully");
             return true;
         }
         else{
@@ -99,6 +100,35 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         }
     }
    
+    public void displayCart(Account cus){
+        if(cus instanceof Customer){
+        System.out.print("Chosen Payment Method :");
+        if(cus.shoppingCart.getPaymentMethod()==1){
+            System.out.println("Cash");
+        }
+        if(cus.shoppingCart.getPaymentMethod()==2){
+            System.out.println("Credit");
+        }
+        System.out.println("*****************************");
+        System.out.print("Student Discount: ");
+        if(cus.shoppingCart.getIfStudent()==true){
+            System.out.println("Applicable");
+        }
+        else{
+        System.out.print("Not Applicable");
+        System.out.println(" ");}
+        System.out.println("*****************************");
+        System.out.print("Delivary: ");
+        if(cus.shoppingCart.getDeliverReq()==true){
+            System.out.println("Requested");
+            System.out.println("Delivary pin:"+cus.shoppingCart.getDeliveryPin());
+        }
+        System.out.println("*****************************");
+        System.out.println("Total Price:"+cus.shoppingCart.getTotalPrice());
+    }
+    else 
+System.out.println("This feature is only for customers ");
+    }
    
     
     
@@ -156,5 +186,23 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public Shoppingcart getCart(){
+        return shoppingCart;
+    }
+    public void setCart(int paymentMethod, boolean ifStudent, boolean newdeliverReq, int newdeliverPin,double newtotalPrice){
+        int pa=paymentMethod;
+        boolean ifS=ifStudent;
+        boolean delR=newdeliverReq;
+        int delp=newdeliverPin;
+        double total=newtotalPrice;
+        shoppingCart.setPaymentMethod(pa);
+        shoppingCart.setIfStudent(ifS);
+        shoppingCart.setDeliverReq(delR);
+        shoppingCart.setDeliveryPin(delp);
+        shoppingCart.setTotalPrice(total);
+    }
+
+    
 
 }

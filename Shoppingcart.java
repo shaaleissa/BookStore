@@ -74,7 +74,8 @@ public void setFinalOrder(Order newFinalOrder){
         deliverPin=newDeliveryPin;
     }
 //methods 
-    public void AddBook(int ch,Customer cus, Books book){
+    public void AddBook(int ch,Account cus, Books book){
+        if(cus instanceof Account){
         while(ch!=9&&ch==1){
             System.out.print("Enter the book ID for the book you want to add:");
          int bookid=input.nextInt();
@@ -96,13 +97,8 @@ public void setFinalOrder(Order newFinalOrder){
             if(book.getQuantity()==0)
                 book.setAvailable(false);
             System.out.println("Book Added"); 
-            System.out.println("If you want to confirm order press 1"); 
-            int confirm=input.nextInt();
-            if(confirm==1){
-                PlaceOrder(cus,order);
+            System.out.println("You need to place order after this if your are done .. :)");
             }
-
-        }
             else
             System.out.println("sorry book is out of stock");
             
@@ -110,10 +106,14 @@ public void setFinalOrder(Order newFinalOrder){
         System.out.println("if you want to stay in the system press 1 if you want out press 9");
         ch=input.nextInt(); 
     }
+}
+else 
+System.out.println("This feature is only for customers ");
     }
     
     
-    public void RemoveBook(int ch,Customer cus , Books book){
+    public void RemoveBook(int ch,Account cus , Books book){
+        if(cus instanceof Account){
         System.out.print("Enter the book ID for the book you want to remove:");
         int bookid=input.nextInt();
         while(ch!=9){
@@ -138,9 +138,13 @@ public void setFinalOrder(Order newFinalOrder){
                 }
                 System.out.println("if you want to remove another book press 1 if you want out press 9");
                 ch=input.nextInt();
+            }
+            else 
+System.out.println("This feature is only for customers ");
         }
     
-    public void PlaceOrder(Customer cus,Books [] booksOrder){
+    public void PlaceOrder(Account cus,Books [] booksOrder){
+        if(cus instanceof Customer){
 
         System.out.println("Enter 1 for cash 2 for credit");
         paymentMethod=input.nextInt();
@@ -172,9 +176,13 @@ public void setFinalOrder(Order newFinalOrder){
         finalOrder.getBookOrder().add(booksOrder[i]);
         Order.numOfOrders++;}
         cus.setCart(paymentMethod, ifStudent, deliverReq, deliverPin, totalPrice);
-    
+        }
+        else 
+System.out.println("This feature is only for customers ");
     }
-    public void cancelOrder(Customer cus){
+
+    public void cancelOrder(Account cus){
+        if(cus instanceof Customer){
         System.out.println("Do you want to cancel your order ? ");
         System.out.println("if yes type 1 if no type 0 ");
         int answer=input.nextInt();
@@ -185,10 +193,13 @@ public void setFinalOrder(Order newFinalOrder){
         }
         else
         System.out.println("Order is NOT cancelled");
-
+    }
+    else 
+System.out.println("This feature is only for customers ");
     }
 
-    public void showBill(Customer cus){
+    public void showBill(Account cus){
+        if(cus instanceof Customer){
         do{
         System.out.println("Order Details:");
         if(cus.getCart().getOrder()==null){
@@ -213,5 +224,9 @@ public void setFinalOrder(Order newFinalOrder){
         break;
 
     } while(false); 
-    }
+}
+else 
+System.out.println("This feature is only for customers ");
+}
+
 }

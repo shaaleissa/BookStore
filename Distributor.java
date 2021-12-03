@@ -1,4 +1,4 @@
-package base;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author shahad
  */
-public class Distributor {
+public class Distributor extends Account {
 
     protected boolean deliveryStatus;
     protected Date dateOfDel;
@@ -21,6 +21,9 @@ public class Distributor {
         this.deliveryStatus = deliveryStatus;
         this.deliveryfee = deliveryfee;
         numOfDistru++;
+    }
+    public Distributor(String username, String name, String password, String phone_no, String address) {
+        super(username, name, password, phone_no, address);
     }
 
     
