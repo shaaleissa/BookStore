@@ -1,0 +1,151 @@
+package account;
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+ import java.util.ArrayList;
+import java.util.Scanner;
+/**
+ *
+ * @author shahad
+ */
+public class Account {
+ArrayList<Account> existAccount= new ArrayList<Account>();
+   protected String username ;
+    protected String name ;
+    protected String password ;
+    protected String phone_no;
+    protected String address;
+    public static int numOfAccount=3;
+  
+
+    
+     public boolean validPass() 
+    {
+        //return true if and only if password:
+        //1. have at least eight characters.
+        //2. consists of only letters and digits.
+        //3. must contain at least two digits.
+        if (password.length() < 8) {
+            return false;
+        } else {
+            char c;
+            int count = 1;
+            for (int i = 0; i < password.length() - 1; i++) {
+                c = password.charAt(i);
+                if (!Character.isLetterOrDigit(c)) {
+                    return false;
+                } else if (Character.isDigit(c)) {
+                    count++;
+                    if (count < 2) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+     public boolean ValidUsername()
+    {
+        //return true if and only if Username:
+        //1. start with characters
+        //2. Number of characters must be between 8 to 15.
+    Pattern unPattern = Pattern.compile("^[a-zA-Z0-9._]{8,15}$");
+    Matcher unMatcher = unPattern.matcher(username);
+    if(unMatcher.matches()){
+        return true;
+    } else {
+        return false;
+    }
+    }
+  
+    
+     boolean validateLogin(String username,String password){
+        Scanner input=new Scanner(System.in);
+        System.out.println("enter your username:");
+       username =input.nextLine();
+       System.out.println("enter your password:");
+       password =input.nextLine();
+              
+        for(int i=0;i<=existAccount.size();i++)
+        {
+            if ( username == existAccount.get(i).username && password== existAccount.get(i).password )
+            {
+               System.out.println("welcome!"+existAccount.get(i).name); 
+            return true;
+            }
+        }return false;
+     }
+     
+  
+   public boolean SignUp(){
+        
+        if(ValidUsername()&& validPass()){
+            System.out.println("You have been ‏signed up successfully");
+            return true;
+        }
+        else{
+            System.out.println("Incorrect username or password, try again");
+            return false;
+        }
+    }
+   
+    public void existingAccount ()
+    {
+    existAccount.add(new Account2 ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
+    existAccount.add(new Account2 ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
+    existAccount.add(new Account2 ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
+    }
+    public Account2() {
+    }
+
+    public Account2(String username, String name, String password, String phone_no, String address) {
+        this.username = username;
+        this.name = name;
+        this.password = password;
+        this.phone_no = phone_no;
+        this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+}
