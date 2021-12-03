@@ -18,6 +18,14 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     protected String address;
     public static int numOfAccount=3;
   
+  
+  
+   public void existingAccount ()
+    {
+    existAccount.add(new Account2 ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
+    existAccount.add(new Account2 ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
+    existAccount.add(new Account2 ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
+    }
 
     
      public boolean validPass() 
@@ -91,16 +99,17 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         }
     }
    
-    public void existingAccount ()
-    {
-    existAccount.add(new Account2 ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
-    existAccount.add(new Account2 ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
-    existAccount.add(new Account2 ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
-    }
-    public Account2() {
+   
+    
+    
+    
+    
+    // constructors, setters and getters
+    
+    public Account() {
     }
 
-    public Account2(String username, String name, String password, String phone_no, String address) {
+    public Account(String username, String name, String password, String phone_no, String address) {
         this.username = username;
         this.name = name;
         this.password = password;
