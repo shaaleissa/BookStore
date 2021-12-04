@@ -1,7 +1,7 @@
 
 
 public class Studybooks extends Books {
-    public int numOfStudybooks;
+    public static int numOfStudybooks;
 
     public Studybooks() {
         super();
