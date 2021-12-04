@@ -9,6 +9,7 @@ public class Shoppingcart {
     private boolean deliverReq;
     private int deliverPin;
     private Date date=new Date();
+    private double distance;
     private double totalPrice;
     static int numOfOrders=0;
     final static int MAX_CART=10;
@@ -46,6 +47,9 @@ public Books[] getOrder(){
     public int getDeliveryPin(){
         return deliverPin;
     }
+    public double getDistance(){
+        return distance;
+    }
 //setters
 
 public void setOrder(Books[] newOrder){
@@ -72,6 +76,9 @@ public void setFinalOrder(Order newFinalOrder){
     }
     public void setDeliveryPin(int newDeliveryPin){
         deliverPin=newDeliveryPin;
+    }
+    public void setDistance(double distance){
+        this.distance=distance;
     }
 //methods 
     public void AddBook(int ch,Account cus, Books book){
@@ -164,6 +171,7 @@ System.out.println("This feature is only for customers ");
         if(deliverReq==true){
             deliverPin=(int)(Math.random()*50);
         }
+        distance=(int)(Math.random()*10);
         double sum=0.0;
         for(int i=0; i<booksOrder.length; i++){
             sum=sum+(booksOrder[i].getPrice());

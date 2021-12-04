@@ -19,7 +19,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
 
     
   
-  
+ 
   
    public void existingAccount ()
     {
@@ -79,7 +79,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
               
         for(int i=0;i<=existAccount.size();i++)
         {
-            if ( username == existAccount.get(i).username && password== existAccount.get(i).password )
+            if ( username.equals(existAccount.get(i).username) && password.equals(existAccount.get(i).password) )
             {
                System.out.println("welcome!"+existAccount.get(i).name); 
             return true;
