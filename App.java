@@ -4,6 +4,7 @@ public class App {
     public static void main(String[] args) {
         // customer account objects
         Account c1=new Customer("shaalei", "Shahad", "12U890", "0505926755", "Dammam");
+        c1.getCart().setDeliverReq(true);
         Account c2=new Customer();
         Account c3=new Customer("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287");
 
@@ -300,7 +301,7 @@ public class App {
                 System.out.println("                                              ♥ 1-Create Account ♥  ");
                 System.out.println("                                              ♥ 2-Sign in ♥  ");
                 System.out.println("                                              ♥ 3-Confirms Orders♥  ");
-                System.out.println("                                              ♥ 4-Calculates Delivary fee♥  ");
+                System.out.println("                                              ♥ 4-Delivary Confirmation♥  ");
                 System.out.println("                                              ♥ 5-Exit System ♥  ");
                 System.out.println("                                              ♥ Please Enter : ♥  ");
                 int what;
@@ -346,16 +347,12 @@ public class App {
                     totalAcc.get(i).validateLogin(totalAcc.get(i));
                     break;
                     case 3:
-                    if(totalAcc.get(i) instanceof Customer)
-                    if(totalAcc.get(i).SignUp()==true){
-                    d3.setDeliveryStatus(totalAcc.get(i).getCart().getDeliverReq());
-                    System.out.println("Order set");}
+                    if(totalAcc.get(i).SignUp()==true)
+                    d3.setDeliveryStatus(c1.getCart().getDeliverReq());
+                    System.out.print("Order Set");
                     break;
                     case 4:
-                    if(totalAcc.get(i) instanceof Customer)
-                    if(totalAcc.get(i).SignUp()==true){
-                    d3.Deliveryfee(totalAcc.get(i).getCart().getDistance());
-                    d3.delivaryConf();}
+                    d3.delivaryConf();
                     break;
                     case 5:
                     System.out.println("");
@@ -364,7 +361,8 @@ public class App {
                 rollIt=false;
                     break;
                 }
-            }}}
+            } break; }
+            }
                 break;
                 case 4: System.out.println(" ♥♥ Thank You For Using Our System We Wish You A Pleasent Day ♥♥ ");
                 keepRolling=false;
