@@ -15,18 +15,9 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     protected String phone_no;
     protected String address;
     private Shoppingcart shoppingCart=new Shoppingcart();
-    public static int numOfAccount=3;
+    public static int numOfAccount;
 
     
-  
- 
-  
-   public void existingAccount ()
-    {
-    existAccount.add(new Account ("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287"));
-    existAccount.add(new Account ("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287"));
-    existAccount.add(new Account ("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287"));
-    }
 
     
      public boolean validPass() 
@@ -70,21 +61,20 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
     }
   
     
-     boolean validateLogin(){
+     public boolean validateLogin(Account acc){
         Scanner input=new Scanner(System.in);
-        System.out.println("enter your username:");
-       String username =input.nextLine();
-       System.out.println("enter your password:");
-       String password =input.nextLine();
-              
-        for(int i=0;i<=existAccount.size();i++)
-        {
-            if ( username.equals(existAccount.get(i).username) && password.equals(existAccount.get(i).password) )
-            {
-               System.out.println("welcome!"+existAccount.get(i).name); 
+        System.out.println("Enter username :");
+        String inpUsername=input.next();
+        System.out.println("Enter password :");
+        String inpPass=input.next(); 
+        if(acc.username.equals(inpUsername)&&acc.password.equals(inpPass)){
+        if(acc.SignUp())
+        System.out.print("Welcome "+acc.name);
             return true;
             }
-        }return false;
+            else{
+        System.out.println("You need to sign up first");
+        return false;}
      }
      
   

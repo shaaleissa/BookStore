@@ -84,18 +84,24 @@ public class Books {
 
     //To add book according to book type
     public void AddBooks(int type){
-        if (type == 1)
-          bookList1.add(new Magazines());
-        else if (type == 2)
+        if (type == 1){
             bookList2.add(new Journals());
-        else
-            bookList3.add(new Studybooks());         
+            System.out.println("A new Journal has been added");}
+        if (type == 3){
+          bookList1.add(new Magazines());
+        System.out.println("A new Magazine has been added");}
+        if (type==2 ) {
+            bookList3.add(new Studybooks());  
+            System.out.println("A new Study book has been added");
+         }      
+       
+       
     }
 
    
     @Override
     public String toString(){
-        return"The details of the book are:\n"+"ID:"+this.bookID+"\n"+"Name:"+this.name+"\n"+"Type:"+this.type+"\n"+"Prise:"+this.price+"\n"+"Availability:"+this.availability;
+        return"The details of the book are:\n "+"ID:"+this.bookID+"   "+"Name:"+this.name+"   "+"Type:"+this.type+"   "+"Prise:"+this.price+"   "+"Availability:"+this.availability;
         
     }
    

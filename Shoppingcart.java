@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 public class Shoppingcart {
@@ -9,10 +10,10 @@ public class Shoppingcart {
     private boolean deliverReq;
     private int deliverPin;
     private Date date=new Date();
-    private double distance;
+    private double distance=0;
     private double totalPrice;
     static int numOfOrders=0;
-    final static int MAX_CART=10;
+    
     Scanner input=new Scanner(System.in);
 //constructors 
     public Shoppingcart(){
@@ -82,7 +83,8 @@ public void setFinalOrder(Order newFinalOrder){
     }
 //methods 
     public void AddBook(int ch,Account cus, Books book){
-        if(cus instanceof Account){
+        if(cus instanceof Customer){
+           
         while(ch!=9&&ch==1){
             System.out.print("Enter the book ID for the book you want to add:");
          int bookid=input.nextInt();
@@ -110,7 +112,7 @@ public void setFinalOrder(Order newFinalOrder){
             System.out.println("sorry book is out of stock");
             
         
-        System.out.println("if you want to stay in the system press 1 if you want out press 9");
+        System.out.println("if you want to add the same book type press 1 if you want out press 9");
         ch=input.nextInt(); 
     }
 }
@@ -119,48 +121,22 @@ System.out.println("This feature is only for customers ");
     }
     
     
-    public void RemoveBook(int ch,Account cus , Books book){
-        if(cus instanceof Account){
-        System.out.print("Enter the book ID for the book you want to remove:");
-        int bookid=input.nextInt();
-        while(ch!=9){
-         Books[] newOrder=new Books[cus.getCart().order.length-1];
-        for(int i=0,k=0; i<cus.getCart().order.length; i++){
-        if(book.getBookID()==bookid){
-            if(book==cus.getCart().order[i])
-            System.out.println("item has been removed");
-            if(book instanceof Journals)
-            Journals.numOfJournals++;
-            if(book instanceof Studybooks)
-            Studybooks.numOfStudybooks++;
-            if(book instanceof Magazines)
-            Magazines.numOfMagazines++;
-            continue;
-        }
-            else{
-                System.out.println("Sorry such order doesn't exist in your shopping cart ");
-                 newOrder[k++]=order[i];}
-                 cus.getCart().setOrder(newOrder);}
-              
-                }
-                System.out.println("if you want to remove another book press 1 if you want out press 9");
-                ch=input.nextInt();
-            }
-            else 
-System.out.println("This feature is only for customers ");
-        }
     
-    public void PlaceOrder(Account cus,Books [] booksOrder){
-        if(cus instanceof Customer){
 
+    
+    public void PlaceOrder(Account cus,Books [] booksOrder, Distributor d1){
+        if(cus instanceof Customer){
+           
         System.out.println("Enter 1 for cash 2 for credit");
         paymentMethod=input.nextInt();
+        System.out.println("--------------------------------------------------------------");
         System.out.println("Are you a Student? if yes press 1 if no press 0");
         int answer=input.nextInt();
         if(answer==1){
             ifStudent=true;
             System.out.println("Congrats you have a discount");
         }
+        System.out.println("--------------------------------------------------------------");
         System.out.println("Do you want your order delivred? choose 1 for yes and 0 for no");
         int answr=input.nextInt();
         if(answr==1){
@@ -170,8 +146,9 @@ System.out.println("This feature is only for customers ");
         deliverReq=false;
         if(deliverReq==true){
             deliverPin=(int)(Math.random()*50);
+            distance=(int)(Math.random()*10);
         }
-        distance=(int)(Math.random()*10);
+        
         double sum=0.0;
         for(int i=0; i<booksOrder.length; i++){
             sum=sum+(booksOrder[i].getPrice());
@@ -179,6 +156,9 @@ System.out.println("This feature is only for customers ");
         }
         if(cus.getCart().getIfStudent()==true){
                totalPrice=(totalPrice*30)/100;
+        }
+        if(cus.getCart().deliverReq==true){
+            totalPrice=totalPrice+(d1.deliveryfee);
         }
         for(int i=0; i<booksOrder.length; i++){
         finalOrder.getBookOrder().add(booksOrder[i]);

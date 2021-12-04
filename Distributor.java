@@ -11,7 +11,7 @@ public class Distributor extends Account {
 
     protected boolean deliveryStatus;
     protected Date dateOfDel;
-    public int numOfDistru;
+    public static int numOfDistru;
     protected double deliveryfee;
 
     public Distributor() {
