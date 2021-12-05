@@ -105,15 +105,32 @@ public class Books {
         
     }
    
-    public void displayInfo(){
-        String answer;
-        System.out.print("would you like to display the informations of your book?");
-        Scanner input=new Scanner(System.in);
-        answer=input.nextLine();
-        answer.toLowerCase();
-        if(answer.equals("yes")||answer.equals('y'))
-            System.out.print(toString());  
-    }
+   public void ViewInfo( ArrayList<Books> allBooks){
+             
+             System.out.println("What type of book would you like information about?  ");     
+           System.out.print("1 for magazine, 2 for journals, 3 for study books:  ");
+             type= input.nextInt();
+             
+             if(type==1){
+            for(int j=0;allBooks.size()>=j; j++)
+            if(allBooks.get(j).getType()==1)
+             allBooks.get(j).toString();
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
+        }
+         if(type==2){
+             for(int j=0; allBooks.size()>=j; j++)
+             if(allBooks.get(j).getType()==2)
+             allBooks.get(j).toString();
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
+         }
+         if(type==3){
+            for(int j=0; allBooks.size()>=j; j++)
+            if(allBooks.get(j).getType()==3)
+            allBooks.get(j).toString();
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
+            
+          
+        }
         
    /** public static void main(String[] args) {
         Books b = new Books();
