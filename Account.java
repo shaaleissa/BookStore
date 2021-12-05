@@ -51,7 +51,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         //return true if and only if Username:
         //1. start with characters
         //2. Number of characters must be between 8 to 15.
-    Pattern unPattern = Pattern.compile("^[a-zA-Z0-9._]{8,15}$");
+    Pattern unPattern = Pattern.compile("^[a-zA-Z0-9.!@#$%^&*-_]{8,15}$");
     Matcher unMatcher = unPattern.matcher(username);
     if(unMatcher.matches()){
         return true;
