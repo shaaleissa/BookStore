@@ -59,9 +59,22 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         return false;
     }
     }
+ 
   
-    
-     public boolean validateLogin(Account acc){
+   public boolean SignUp(){
+        
+        if(ValidUsername()&& validPass()){
+            System.out.println("You have been signed up successfully");
+            return true;
+        }
+        else{
+            System.out.println("Incorrect username or password, try again ");
+            return false;
+        }
+    }
+ 
+ 
+ public boolean validateLogin(Account acc){
         Scanner input=new Scanner(System.in);
         System.out.println("Enter username :");
         String inpUsername=input.next();
@@ -76,19 +89,6 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         System.out.println("You need to sign up first");
         return false;}
      }
-     
-  
-   public boolean SignUp(){
-        
-        if(ValidUsername()&& validPass()){
-            System.out.println("You have been signed up successfully");
-            return true;
-        }
-        else{
-            System.out.println("Incorrect username or password, try again ");
-            return false;
-        }
-    }
    
     public void displayCart(Account cus){
         if(cus instanceof Customer){
