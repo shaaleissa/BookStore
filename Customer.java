@@ -12,7 +12,7 @@ public static int numOfCustomers=0;
         super(username, name, password, phone_no, address);
     }
     
-      void helpcenter (){
+      public void helpcenter (){
            Scanner input=new Scanner(System.in);
     boolean rollIt=true;
    
