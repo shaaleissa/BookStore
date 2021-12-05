@@ -131,7 +131,7 @@ public class Books {
             }
           
         }
-    System.out.println("Do you want more information ? if no press -1 if no press any other number ");
+    System.out.println("Do you want more information ? if no press -1 if yes press any other number ");
 ch=input.nextInt();}
     }
         

@@ -30,8 +30,7 @@ public class App {
     Books j1=new Journals(1, "stories", 1, 190, 4, true);
     // StudyBooks Book Objects
     Books s1=new Studybooks(2, "Math", 2, 119, 9, true);
-    Books s2=new Studybooks(7, "English", 2, 99, 10, true);
-    Books s3=new Studybooks(9, "Geography", 2, 90, 1, true);
+
     // Magazines Book objects
     Books m1=new Magazines(6, "Vouge", 3, 100, 3, true);
 
@@ -40,8 +39,6 @@ public class App {
     totalBooks.add(m1);
     totalBooks.add(s1);
     totalBooks.add(j1);
-    totalBooks.add(s2);
-    totalBooks.add(s3);
     Books.numOfBooks=totalBooks.size();
     // total array list of accounts 
     ArrayList<Account> totalAcc=new ArrayList<Account>();

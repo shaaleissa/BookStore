@@ -85,7 +85,7 @@ public void setFinalOrder(Order newFinalOrder){
     public void AddBook(int ch,Account cus, Books book){
         if(cus instanceof Customer){
            
-        while(ch!=9&&ch==1){
+        while(ch==1){
             System.out.print("Enter the book ID for the book you want to add:");
          int bookid=input.nextInt();
             Books[] newOrder=new Books[cus.getCart().order.length+1];
@@ -112,7 +112,7 @@ public void setFinalOrder(Order newFinalOrder){
             System.out.println("sorry book is out of stock");
             
         
-        System.out.println("if you want to add the same book type press 1 if you want out press 9");
+        System.out.println("if you want to add the same book type press 1 if you want out press any number");
         ch=input.nextInt(); 
     }
 }
@@ -142,7 +142,7 @@ System.out.println("This feature is only for customers ");
         deliverReq=false;
         if(deliverReq==true){
             deliverPin=(int)(Math.random()*50);
-            distance=(int)(Math.random()*10);
+            distance=(int)(Math.random()*(60-10)+10);
         }
         
         double sum=0.0;
