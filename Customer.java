@@ -12,7 +12,8 @@ public static int numOfCustomers=0;
         super(username, name, password, phone_no, address);
     }
     
-      public void helpcenter (){
+     
+      public static void helpcenter (){
            Scanner input=new Scanner(System.in);
     boolean rollIt=true;
    
@@ -95,6 +96,9 @@ public static int numOfCustomers=0;
                 System.out.println(" thank you....Regards,support team ♡ ");
                 System.out.println("");
                 rollIt=false;
+                    break;
+                    default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
                     break;
     
     }}

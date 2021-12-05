@@ -144,6 +144,9 @@ public class App {
                     System.out.println(" ♥♥ Bye Bye ♥♥ ");
                     keepItUp=false;
                     break;
+                    default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
+                    break;
                 }
 
             }}}
@@ -160,7 +163,8 @@ public class App {
                 System.out.println("                                              ♥ 1-Create Account ♥  ");
                 System.out.println("                                              ♥ 2-Sign in ♥  ");
                 System.out.println("                                              ♥ 3-Shopping Cart System ♥  ");
-                System.out.println("                                              ♥ 4-Exit System ♥  ");
+                System.out.println("                                              ♥ 4-Help Center♥  ");
+                System.out.println("                                              ♥ 5-Exit System ♥  ");
                 System.out.println("   ♥ Please Enter : ♥  ");
                 System.out.println("-----------------------------------------------------------------------------");
                 answer=input.nextInt();
@@ -274,15 +278,24 @@ public class App {
          break; 
          case 5: System.out.println("Thank you for shopping with us");
          keepGoing=false;
+         default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
+                    break;
 
      }
     }}
                     break;
                     case 4:
+                    Customer.helpcenter();
+                    break;
+                    case 5:
                     System.out.println("");
                 System.out.println(" ♥♥ Bye Bye ♥♥ ");
                 System.out.println("");
                 keepgoing=false;
+                    break;
+                    default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
                     break;
                 }
             }}
@@ -360,6 +373,9 @@ public class App {
                 System.out.println("");
                 rollIt=false;
                     break;
+                    default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
+                    break;
                 }
             } break; }
             }
@@ -367,6 +383,9 @@ public class App {
                 case 4: System.out.println(" ♥♥ Thank You For Using Our System We Wish You A Pleasent Day ♥♥ ");
                 keepRolling=false;
                 break;
+                default:
+                    System.out.println("Choice doesn't exist in the menu try again 😄");
+                    break;
             
         }
 

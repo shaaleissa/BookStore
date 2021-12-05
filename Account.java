@@ -68,7 +68,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
         System.out.println("Enter password :");
         String inpPass=input.next(); 
         if(acc.username.equals(inpUsername)&&acc.password.equals(inpPass)){
-        if(acc.SignUp())
+        if(acc.SignUp()==true)
         System.out.print("Welcome "+acc.name);
             return true;
             }
@@ -85,7 +85,7 @@ ArrayList<Account> existAccount= new ArrayList<Account>();
             return true;
         }
         else{
-            System.out.println("Incorrect username or password, try again");
+            System.out.println("Incorrect username or password, try again ");
             return false;
         }
     }

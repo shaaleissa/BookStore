@@ -120,10 +120,6 @@ else
 System.out.println("This feature is only for customers ");
     }
     
-    
-    
-
-    
     public void PlaceOrder(Account cus,Books [] booksOrder, Distributor d1){
         if(cus instanceof Customer){
            
