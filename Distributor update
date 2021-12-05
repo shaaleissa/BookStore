@@ -1,0 +1,170 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package project;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+/**
+ *
+ * @author shahad
+ */
+public class Distributor extends Account {
+
+    protected boolean deliveryStatus;
+    protected Date dateOfDel;
+    public static int numOfDistru;
+    protected double deliveryfee;
+
+    public Distributor() {
+    }
+
+    public Distributor(boolean deliveryStatus, double deliveryfee) {
+        this.deliveryStatus = deliveryStatus;
+        this.deliveryfee = deliveryfee;
+        numOfDistru++;
+    }
+    public Distributor(String username, String name, String password, String phone_no, String address) {
+        super(username, name, password, phone_no, address);
+    }
+
+    
+    //Calculate the delivery fees
+    public void Deliveryfee (double distance)
+    {
+    if (distance == 0) 
+    {
+        //If customer do not want to deliver the order
+        deliveryfee = 0.0;
+        System.out.println("There is no delivery fee.");
+    } 
+    else if (distance > 1) 
+    {
+        deliveryfee = ((distance * 0.5) + 2.0);
+        System.out.println("Your delivery fee is: $" + deliveryfee);
+    } 
+    else if (distance < 0) {
+        System.out.println("Invalid input");
+    }
+    
+    }
+    
+    public void setDeliveryStatus() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Did the customer receive his order? (if yes enter 1, if no enter zero)");
+        int no= input.nextInt();
+        if(no==1){
+            deliveryStatus=true;
+        }
+        else if (no==0){
+            deliveryStatus=false;
+        } 
+    }
+    
+    public void delivaryConf(){
+        //Print out the delivery status
+        if(deliveryStatus){
+            System.out.println("The order has been delivered to the customer successfully");
+            System.out.print("Date and time of the delivery: ");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            dateOfDel = new Date();
+            System.out.println(dateFormat.format(dateOfDel));
+        }
+        else if(!deliveryStatus)
+            System.out.println("order has not been delivered");
+     
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+/*
+case 3:
+                boolean rollIt=true;
+                for(int i=0; i<=totalAcc.size(); i++){
+                    if(totalAcc.get(i) instanceof Distributor){
+            while(rollIt){
+                System.out.println("                        -----------------------------------------------------------------------------");
+                System.out.println("                                              ♥ Hello Dear Agent!♥  ");
+                System.out.println("                                              ♥ 1-Create Account ♥  ");
+                System.out.println("                                              ♥ 2-Sign in ♥  ");
+                System.out.println("                                              ♥ 3-Confirm order pick up♥  ");
+                System.out.println("                                              ♥ 4-Print Delivary Confirmation♥  ");
+                System.out.println("                                              ♥ 5-Exit System ♥  ");
+                System.out.println("                                              ♥ Please Enter : ♥  ");
+                int what;
+                what=input.nextInt();
+                switch(what){
+                    case 1:
+                    do{
+                        System.out.println("--------------------------------------------------------------");
+                        System.out.println("Please enter a userName that satisfy the following conditions:\n" + 
+                                "    1. start with characters \n" + 
+                                "    2. Number of characters must be between 8 to 15.");
+                        String username= input.next();
+                            totalAcc.get(i).setUsername(username);
+                        
+                        System.out.println("\nPlease enter a Password that satisfy the following conditions:\n" + 
+                                "    1. have at least eight characters.\n" + 
+                                "    2. consists of only letters and digits.\n" +
+                                "    3. must contain at least two digits.");
+                        String pass= input.next();
+                            totalAcc.get(i).setPassword(pass);
+                        
+                        
+                        System.out.println("\nPlease enter your name:");
+                        String name= input.next();
+                            totalAcc.get(i).setName(name);
+                        
+                        
+                        System.out.println("\nPlease enter your phone number:");
+                        String phone_no= input.next();
+                            totalAcc.get(i).setPhone_no(phone_no);
+                        
+                        
+                        
+                        System.out.println("\nPlease enter your address (city name):");
+                        String addres= input.next();
+                            totalAcc.get(i).setAddress(addres);
+                        
+                            totalAcc.get(i).existAccount.add(totalAcc.get(i));
+                        }while(!totalAcc.get(i).SignUp());
+                    break;
+                    case 2:
+                    if(totalAcc.get(i).SignUp()==true)
+                    totalAcc.get(i).validateLogin(totalAcc.get(i));
+                    break;
+                    case 3:
+                    if(totalAcc.get(i).SignUp()==true){
+                        d3.setDeliveryStatus();
+                        System.out.print("Order Set");
+                    }
+                    break;
+                    case 4:
+                    if(totalAcc.get(i).SignUp()==true){
+                        d3.delivaryConf();
+                    }
+                    break;
+                    case 5:
+                    System.out.println("");
+                System.out.println(" ♥♥ Bye Bye ♥♥ ");
+                System.out.println("");
+                rollIt=false;
+                    break;
+                }
+            } break; }
+            }
+                break;
+*/
