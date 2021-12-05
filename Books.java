@@ -105,32 +105,35 @@ public class Books {
         
     }
    
-   public void ViewInfo( ArrayList<Books> allBooks){
-             
-             System.out.println("What type of book would you like information about?  ");     
-           System.out.print("1 for magazine, 2 for journals, 3 for study books:  ");
-             type= input.nextInt();
-             
+   public void ViewInfo( ArrayList<Books> allBooks, int type){
+       Scanner input=new Scanner(System.in);
+       int ch=0;
+       while(ch!=-1){
              if(type==1){
-            for(int j=0;allBooks.size()>=j; j++)
-            if(allBooks.get(j).getType()==1)
-             allBooks.get(j).toString();
-            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
+            for(int j=0;allBooks.size()>j; j++){
+            if(allBooks.get(j).getType()==1){
+             System.out.println(allBooks.get(j).toString());
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity());}
+        }
         }
          if(type==2){
-             for(int j=0; allBooks.size()>=j; j++)
-             if(allBooks.get(j).getType()==2)
-             allBooks.get(j).toString();
-            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
+             for(int j=0; allBooks.size()>j; j++){
+             if(allBooks.get(j).getType()==2){
+             System.out.println(allBooks.get(j).toString());
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity());}
+        }
          }
          if(type==3){
-            for(int j=0; allBooks.size()>=j; j++)
-            if(allBooks.get(j).getType()==3)
-            allBooks.get(j).toString();
-            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity);
-            
+            for(int j=0; allBooks.size()>j; j++){
+            if(allBooks.get(j).getType()==3){
+            System.out.println(allBooks.get(j).toString());
+            System.out.println("and the quantity is:"+ allBooks.get(j).getQuantity());}
+            }
           
         }
+    System.out.println("Do you want more information ? if no press -1 if no press any other number ");
+ch=input.nextInt();}
+    }
         
    /** public static void main(String[] args) {
         Books b = new Books();
@@ -145,5 +148,5 @@ public class Books {
         book1.displayInfo();
         
     }*/
-}
+   }
 

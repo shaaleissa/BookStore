@@ -3,6 +3,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+
 /**
  *
  * @author shahad
@@ -47,21 +48,30 @@ public class Distributor extends Account {
     
     }
     
-    public void setDeliveryStatus(boolean deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
+    public void setDeliveryStatus() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Did the customer receive his order? (if yes enter 1, if no enter zero)");
+        int no= input.nextInt();
+        if(no==1){
+            deliveryStatus=true;
+        }
+        else if (no==0){
+            deliveryStatus=false;
+        } 
     }
     
     public void delivaryConf(){
-        //Print out the date of delivery
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        dateOfDel = new Date();
-        System.out.println(dateFormat.format(dateOfDel));
-        
         //Print out the delivery status
-        if(deliveryStatus)
-            System.out.println("order has been successfully delivered");
+        if(deliveryStatus){
+            System.out.println("The order has been delivered to the customer successfully");
+            System.out.print("Date and time of the delivery: ");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            dateOfDel = new Date();
+            System.out.println(dateFormat.format(dateOfDel));
+        }
         else if(!deliveryStatus)
             System.out.println("order has not been delivered");
+     
     }
     
     

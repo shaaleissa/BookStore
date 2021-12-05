@@ -3,18 +3,16 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         // customer account objects
-        Account c1=new Customer("shaalei", "Shahad", "12U890", "0505926755", "Dammam");
-        c1.getCart().setDeliverReq(true);
-        Account c2=new Customer();
-        Account c3=new Customer("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287");
+        Account c1=new Customer("shaaleissa20","shahad aleissa","shahad1234","0555189040","saudi Arbia/Dammam/9287");
+        Account c2=new Customer("shahad.iau","shahad ALshammary","shahad1234","0555163240","saudi Arbia/Dammam/9287");
 
 
         // admin account objects
-        Account a1=new Admin("khawthar.iau","khawthar","khawthar1234","0553934387","saudi Arbia/khobar/9287");
+        Account a1=new Admin("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287");
         Account a2=new Admin();
 
         // agent account objects 
-        Account d1=new Distributor("fatima.iau","fatima ","fatima1234","0555168340","saudi Arbia/khobar/9287");
+        Account d1=new Distributor("James.orders11","James ","James3319","0555169080","saudi Arbia/khobar/9287");
         Account d2=new Distributor();
         Distributor d3=new Distributor();
 
@@ -31,7 +29,9 @@ public class App {
      // Journals Book objects
     Books j1=new Journals(1, "stories", 1, 190, 4, true);
     // StudyBooks Book Objects
-    Books s1=new Studybooks(2, "Math", 2, 119, 8, true);
+    Books s1=new Studybooks(2, "Math", 2, 119, 9, true);
+    Books s2=new Studybooks(7, "English", 2, 99, 10, true);
+    Books s3=new Studybooks(9, "Geography", 2, 90, 1, true);
     // Magazines Book objects
     Books m1=new Magazines(6, "Vouge", 3, 100, 3, true);
 
@@ -40,17 +40,20 @@ public class App {
     totalBooks.add(m1);
     totalBooks.add(s1);
     totalBooks.add(j1);
+    totalBooks.add(s2);
+    totalBooks.add(s3);
     Books.numOfBooks=totalBooks.size();
     // total array list of accounts 
     ArrayList<Account> totalAcc=new ArrayList<Account>();
     //customers
     totalAcc.add(c1);
-    totalAcc.add(c3);
+    totalAcc.add(c2);
     //admins
     totalAcc.add(a1);
     totalAcc.add(a2);
     //agents
     totalAcc.add(d1);
+    totalAcc.add(d2);
     Account.numOfAccount=totalAcc.size();
        
         Scanner input=new Scanner(System.in);
@@ -65,6 +68,7 @@ public class App {
         System.out.println("                                              ♥ 2- Customer ♥  ");
         System.out.println("                                              ♥ 3- Disturbuting Agent ♥  ");
         System.out.println("                                              ♥ 4- Exit The System♥  ");
+        System.out.println("                            -----------------------------------------------------------------------------");
         System.out.println("   ♥ Please Enter : ♥  ");
         System.out.println("-----------------------------------------------------------------------------");
         choice=input.nextInt();
@@ -73,14 +77,15 @@ public class App {
             boolean keepItUp=true;
             for(int i=0; i<totalAcc.size(); i++){
                 if(totalAcc.get(i) instanceof Admin){
+                    Account temp = new Account();
             while(keepItUp){
                 System.out.println("                        -----------------------------------------------------------------------------");
                 System.out.println("                                              ♥ Hello Dear Admin!♥  ");
                 System.out.println("                                              ♥ 1-Create Account ♥  ");
                 System.out.println("                                              ♥ 2-Sign in ♥  ");
-                System.out.println("                                              ♥ 3-Add Books ♥  ");
-                System.out.println("                                              ♥ 4-Checks Number of Orders ♥  ");
-                System.out.println("                                              ♥ 5-Exit System ♥  ");
+                System.out.println("                                              ♥ 3-Functions Of Admin♥  ");
+                System.out.println("                                              ♥ 4-Exit System ♥  ");
+                System.out.println("                        -----------------------------------------------------------------------------");
                 System.out.println("   ♥ Please Enter : ♥  ");
                 System.out.println("-----------------------------------------------------------------------------");
                 int what;
@@ -115,15 +120,27 @@ public class App {
                         System.out.println("\nPlease enter your address (city name):");
                         String addres= input.next();
                             totalAcc.get(i).setAddress(addres);
-                        
-                        }while(!totalAcc.get(i).SignUp());
+
+                            totalAcc.get(i).existAccount.add(totalAcc.get(i));
+                            temp=totalAcc.get(i);
+
+                        }while(!temp.SignUp());
                     break;
                     case 2:
                     System.out.println("--------------------------------------------------------------");
                     totalAcc.get(i).validateLogin(totalAcc.get(i));
                     break;
                     case 3:
-                    if(totalAcc.get(i).SignUp()==true){
+                    if(totalAcc.get(i).validateLogin(totalAcc.get(i))==true){
+                        System.out.println("                        -----------------------------------------------------------------------------");
+                        System.out.println("                                              ♥ 1-Add Books ♥  ");
+                        System.out.println("                                              ♥ 2-Checks Number of Orders ♥  ");
+                        System.out.println("                        -----------------------------------------------------------------------------");
+                        System.out.println("   ♥ Please Enter : ♥  ");
+                System.out.println("-----------------------------------------------------------------------------");
+                int functions=input.nextInt();
+                switch(functions){
+                    case 1: {
                     System.out.println("--------------------------------------------------------------");
                     System.out.println("Enter type of book you want to add:");
                     System.out.println("1 for journals :");
@@ -132,14 +149,18 @@ public class App {
                     int ch=input.nextInt();
                     newBooks.get(i).AddBooks(ch);}
                     break;
-                    case 4:
-                    if(totalAcc.get(i).SignUp()==true){
-                    System.out.println("--------------------------------------------------------------");
-                    System.out.println("The number of current orders are: "+ Order.numOfOrders);
-                    System.out.println("Total Order:");
-                    System.out.println(c1.getCart().getFinalOrder().getBookOrder());}
+                    case 2:{
+                        System.out.println("--------------------------------------------------------------");
+                        System.out.println("The number of current orders are: "+ Order.numOfOrders);
+                        System.out.println("Total Order:");
+                        System.out.println(c1.getCart().getFinalOrder().getBookOrder());}
+                        break;
+                        default: System.out.println("Choice doesn't exist in the menu try again 😄");
+                        break;
+                    }   
+                    }
                     break;
-                    case 5:
+                    case 4:
                     System.out.println("--------------------------------------------------------------");
                     System.out.println(" ♥♥ Bye Bye ♥♥ ");
                     keepItUp=false;
@@ -165,6 +186,7 @@ public class App {
                 System.out.println("                                              ♥ 3-Shopping Cart System ♥  ");
                 System.out.println("                                              ♥ 4-Help Center♥  ");
                 System.out.println("                                              ♥ 5-Exit System ♥  ");
+                System.out.println("                        -----------------------------------------------------------------------------");
                 System.out.println("   ♥ Please Enter : ♥  ");
                 System.out.println("-----------------------------------------------------------------------------");
                 answer=input.nextInt();
@@ -216,7 +238,7 @@ public class App {
                     totalAcc.get(i).validateLogin(totalAcc.get(i));
                     break;
                     case 3:
-                    if(totalAcc.get(i).SignUp()==true){
+                    if(totalAcc.get(i).validateLogin(totalAcc.get(i))==true){
                     System.out.println("--------------------------------------------------------------");
                     boolean keepGoing=true;
                     
@@ -227,8 +249,10 @@ public class App {
         System.out.println("                                               1 to add books");
         System.out.println("                                               2 to place order  ");
         System.out.println("                                               3 to show invoice");
-        System.out.println("                                               4 to cancel order");
-        System.out.println("                                               5 to exit shopping cart system");
+        System.out.println("                                               4 more info about a book ");
+        System.out.println("                                               5 to cancel order");
+        System.out.println("                                               6 to exit shopping cart system");
+        System.out.println("                        -----------------------------------------------------------------------------");
         System.out.println("   ♥ Please Enter : ♥  ");
         System.out.println("-----------------------------------------------------------------------------");
         ch=input.nextInt();
@@ -273,11 +297,21 @@ public class App {
          totalAcc.get(i).getCart().showBill(totalAcc.get(i));
          break;
          case 4:
+         for(int j=0; j<totalBooks.size(); j++){
+            System.out.println("What type of book would you like information about?  ");     
+            System.out.print("1 for journals, 2 for study books, 3 for magazine:  ");
+              int type= input.nextInt();
+             totalBooks.get(j).ViewInfo(totalBooks,type);
+            break;
+         }
+         break;
+         case 5:
          System.out.println("--------------------------------------------------------------");
          totalAcc.get(i).getCart().cancelOrder(totalAcc.get(i));
          break; 
-         case 5: System.out.println("Thank you for shopping with us");
+         case 6: System.out.println("Thank you for shopping with us");
          keepGoing=false;
+         break;
          default:
                     System.out.println("Choice doesn't exist in the menu try again 😄");
                     break;
@@ -288,15 +322,15 @@ public class App {
                     case 4:
                     Customer.helpcenter();
                     break;
-                    case 5:
+                    case 5:{
                     System.out.println("");
                 System.out.println(" ♥♥ Bye Bye ♥♥ ");
                 System.out.println("");
                 keepgoing=false;
-                    break;
-                    default:
+                    break;}
+                    default:{
                     System.out.println("Choice doesn't exist in the menu try again 😄");
-                    break;
+                    break;}
                 }
             }}
         break; }
@@ -313,12 +347,14 @@ public class App {
                 System.out.println("                                              ♥ Hello Dear Agent!♥  ");
                 System.out.println("                                              ♥ 1-Create Account ♥  ");
                 System.out.println("                                              ♥ 2-Sign in ♥  ");
-                System.out.println("                                              ♥ 3-Confirms Orders♥  ");
-                System.out.println("                                              ♥ 4-Delivary Confirmation♥  ");
-                System.out.println("                                              ♥ 5-Exit System ♥  ");
-                System.out.println("                                              ♥ Please Enter : ♥  ");
+                System.out.println("                                              ♥ 3-Functions of the Agent  ♥  ");
+                System.out.println("                                              ♥ 4-Exit System ♥  ");
+                System.out.println("                        -----------------------------------------------------------------------------");
+                System.out.println("♥ Please Enter : ♥  ");
+                System.out.println("-----------------------------------------------------------------------------");
                 int what;
                 what=input.nextInt();
+                Account temp=new Account();
                 switch(what){
                     case 1:
                     do{
@@ -353,21 +389,36 @@ public class App {
                             totalAcc.get(i).setAddress(addres);
                         
                             totalAcc.get(i).existAccount.add(totalAcc.get(i));
-                        }while(!totalAcc.get(i).SignUp());
+                            temp=totalAcc.get(i);
+                        }while(!temp.SignUp());
                     break;
                     case 2:
-                    if(totalAcc.get(i).SignUp()==true)
+                    System.out.println("                        -----------------------------------------------------------------------------");
                     totalAcc.get(i).validateLogin(totalAcc.get(i));
                     break;
                     case 3:
-                    if(totalAcc.get(i).SignUp()==true)
-                    d3.setDeliveryStatus(c1.getCart().getDeliverReq());
-                    System.out.print("Order Set");
+                    if(totalAcc.get(i).validateLogin(totalAcc.get(i))==true){
+                    System.out.println("                        -----------------------------------------------------------------------------");
+                    System.out.println("                                              ♥ 1-Confirms Orders♥  ");
+                    System.out.println("                                              ♥ 2-Prints Delivary Confirmation♥  ");
+                    System.out.println("                        -----------------------------------------------------------------------------");
+                    System.out.println("♥ Please Enter : ♥  ");
+                    System.out.println("-----------------------------------------------------------------------------");
+                    int function=input.nextInt();
+                    switch(function){
+                        case 1:
+                            d3.setDeliveryStatus();
+                            System.out.print("Order Set");
+                        break;
+                        case 2:
+                        d3.delivaryConf();
+                        break;
+                        default: System.out.println("Choice doesn't exist in the menu try again 😄");
+                        break;
+                    }
+                }
                     break;
                     case 4:
-                    d3.delivaryConf();
-                    break;
-                    case 5:
                     System.out.println("");
                 System.out.println(" ♥♥ Bye Bye ♥♥ ");
                 System.out.println("");
